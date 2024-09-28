@@ -1,10 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export default function AnimeList() {
 	const [animeList, setAnimeList] = useState([]);
 	const [searchQuery, setSearchQuery] = useState("");
+	const [debouncedQuery, setDebouncedQuery] = useState("");
+	const inputRef = useRef(null);
 
 	const getAnimeList = async (query = "") => {
 		const apiUrl = query ? `https://api.jikan.moe/v4/anime?q=${query}` : "https://api.jikan.moe/v4/anime";
@@ -18,14 +20,25 @@ export default function AnimeList() {
 	};
 
 	useEffect(() => {
-		getAnimeList();
+		inputRef.current.focus();
 	}, []);
 
+	useEffect(() => {
+		const handler = setTimeout(() => {
+			setDebouncedQuery(searchQuery);
+		}, 500);
+
+		return () => {
+			clearTimeout(handler);
+		};
+	}, [searchQuery]);
+
+	useEffect(() => {
+		getAnimeList(debouncedQuery);
+	}, [debouncedQuery]);
+
 	const handleSearch = (event) => {
-		const query = event.target.value;
-		setSearchQuery(query);
-		console.log(query);
-		getAnimeList(query);
+		setSearchQuery(event.target.value);
 	};
 
 	return (
@@ -40,6 +53,7 @@ export default function AnimeList() {
 					value={searchQuery}
 					onChange={handleSearch}
 					className="border p-2 rounded w-full sm:w-1/2 text-black"
+					ref={inputRef}
 				/>
 			</div>
 
