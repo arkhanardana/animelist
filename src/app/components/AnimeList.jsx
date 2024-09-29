@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 
 export default function AnimeList() {
 	const [animeList, setAnimeList] = useState([]);
@@ -27,7 +28,6 @@ export default function AnimeList() {
 		const handler = setTimeout(() => {
 			setDebouncedQuery(searchQuery);
 		}, 500);
-
 		return () => {
 			clearTimeout(handler);
 		};
@@ -59,16 +59,19 @@ export default function AnimeList() {
 
 			{/* Anime Cards */}
 			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
-				{animeList && animeList.length > 0 ? (
+				{!!animeList.length ? (
 					animeList.map((anime) => (
-						<div key={anime.mal_id} className="border p-4 rounded shadow-lg">
-							<img
-								src={anime.images.jpg.image_url}
+						<div key={anime.mal_id} className="bg-white p-7 rounded shadow-lg">
+							<Image
+								className="w-full h-96 object-cover rounded"
+								src={anime.images.webp.image_url}
 								alt={anime.title}
-								className="w-full h-56 object-cover rounded"
+								width={300}
+								height={500}
+								loading="lazy"
 							/>
-							<h2 className="text-xl font-bold mt-2">{anime.title}</h2>
-							<p className="text-sm mt-1">
+							<h2 className="text-xl font-bold mt-2 text-black">{anime.title}</h2>
+							<p className="text-sm mt-1 text-black">
 								{anime.synopsis ? anime.synopsis.slice(0, 100) + "..." : "No synopsis available."}
 							</p>
 						</div>
