@@ -3,11 +3,23 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 
+type AnimeProps = {
+	mal_id: number;
+	title: string;
+	image_url: string;
+	synopsis: string;
+	images: {
+		webp: {
+			image_url: string;
+		};
+	};
+};
+
 export default function AnimeList() {
-	const [animeList, setAnimeList] = useState([]);
-	const [searchQuery, setSearchQuery] = useState("");
-	const [debouncedQuery, setDebouncedQuery] = useState("");
-	const inputRef = useRef(null);
+	const [animeList, setAnimeList] = useState<AnimeProps[]>([]);
+	const [searchQuery, setSearchQuery] = useState<string>("");
+	const [debouncedQuery, setDebouncedQuery] = useState<string>("");
+	const inputRef = useRef<HTMLInputElement>(null);
 
 	const getAnimeList = async (query = "") => {
 		const apiUrl = query ? `https://api.jikan.moe/v4/anime?q=${query}` : "https://api.jikan.moe/v4/anime";
@@ -21,7 +33,7 @@ export default function AnimeList() {
 	};
 
 	useEffect(() => {
-		inputRef.current.focus();
+		inputRef.current?.focus();
 	}, []);
 
 	useEffect(() => {
@@ -37,7 +49,7 @@ export default function AnimeList() {
 		getAnimeList(debouncedQuery);
 	}, [debouncedQuery]);
 
-	const handleSearch = (event) => {
+	const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setSearchQuery(event.target.value);
 	};
 
@@ -60,7 +72,7 @@ export default function AnimeList() {
 			{/* Anime Cards */}
 			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
 				{!!animeList.length ? (
-					animeList.map((anime) => (
+					animeList.map((anime: AnimeProps) => (
 						<div key={anime.mal_id} className="bg-white p-4 rounded shadow-lg">
 							<Image
 								className="w-full h-96 object-cover rounded-lg"
