@@ -61,9 +61,9 @@ export default function AnimeList() {
 			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
 				{!!animeList.length ? (
 					animeList.map((anime) => (
-						<div key={anime.mal_id} className="bg-white p-7 rounded shadow-lg">
+						<div key={anime.mal_id} className="bg-white p-4 rounded shadow-lg">
 							<Image
-								className="w-full h-96 object-cover rounded"
+								className="w-full h-96 object-cover rounded-lg"
 								src={anime.images.webp.image_url}
 								alt={anime.title}
 								width={300}
