@@ -1,5 +1,3 @@
-"use client";
-
 import { GithubLogo } from "@phosphor-icons/react";
 import Link from "next/link";
 
