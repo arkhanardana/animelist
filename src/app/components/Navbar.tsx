@@ -11,7 +11,7 @@ export default function Navbar() {
 					<Link href="/" className="text-xl text-[#070f2b] font-semibold cursor-pointer">
 						AnimeList
 					</Link>
-					<Link href="https://github.com/arkhanardana">
+					<Link href="https://github.com/arkhanardana" aria-label="GitHub Arkhan Ardana">
 						<GithubLogo size={40} className="cursor-pointer" />
 					</Link>
 				</li>
