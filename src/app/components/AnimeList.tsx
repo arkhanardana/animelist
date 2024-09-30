@@ -55,10 +55,10 @@ export default function AnimeList() {
 
 	return (
 		<div className="container mx-auto">
-			<h1 className="text-3xl text-center p-4">ANIMELIST</h1>
+			<h1 className="text-3xl text-white text-center p-4 font-semibold">List-List Anime</h1>
 
 			{/* Search Bar */}
-			<div className="flex mx-2 sm:mx-4 justify-center mb-4">
+			<div className="flex mx-6 sm:mx-4 justify-center mb-4">
 				<input
 					type="text"
 					placeholder="Search anime..."
@@ -70,7 +70,7 @@ export default function AnimeList() {
 			</div>
 
 			{/* Anime Cards */}
-			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 p-4">
 				{!!animeList.length ? (
 					animeList.map((anime: AnimeProps) => (
 						<div key={anime.mal_id} className="bg-white p-4 rounded shadow-lg">
