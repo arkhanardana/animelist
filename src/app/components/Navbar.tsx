@@ -6,7 +6,7 @@ export default function Navbar() {
 		<nav className="sticky p-3 w-full bg-white mb-9 top-0">
 			<ul className="flex justify-between items-center mx-4 sm:mx-14">
 				<li>
-					<Link href="/" className="text-xl text-[#070f2b] font-semibold">
+					<Link href="/" className="text-xl text-[#070f2b] font-semibold cursor-pointer">
 						AnimeList
 					</Link>
 				</li>
