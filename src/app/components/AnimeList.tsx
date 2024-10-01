@@ -19,6 +19,7 @@ export default function AnimeList() {
 	const [animeList, setAnimeList] = useState<AnimeProps[]>([]);
 	const [searchQuery, setSearchQuery] = useState<string>("");
 	const [debouncedQuery, setDebouncedQuery] = useState<string>("");
+	const [visibleAnime, setVisibleAnime] = useState<number>(8);
 	const inputRef = useRef<HTMLInputElement>(null);
 
 	const getAnimeList = async (query = "") => {
@@ -53,6 +54,10 @@ export default function AnimeList() {
 		setSearchQuery(event.target.value);
 	};
 
+	const handleLoadMore = () => {
+		setVisibleAnime((prevVisibleAnime) => prevVisibleAnime + 8);
+	};
+
 	return (
 		<div className="container mx-auto">
 			<h1 className="text-3xl text-white text-center p-4 font-semibold">List-List Anime</h1>
@@ -72,7 +77,7 @@ export default function AnimeList() {
 			{/* Anime Cards */}
 			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 p-4">
 				{!!animeList.length ? (
-					animeList.map((anime: AnimeProps) => (
+					animeList.slice(0, visibleAnime).map((anime: AnimeProps) => (
 						<div key={anime.mal_id} className="bg-white p-4 rounded shadow-lg">
 							<Image
 								className="w-full h-96 object-cover rounded-lg"
@@ -92,6 +97,14 @@ export default function AnimeList() {
 					<p className="text-center col-span-4">No anime found...</p>
 				)}
 			</div>
+			{visibleAnime < animeList.length && (
+				<button
+					onClick={handleLoadMore}
+					className="flex justify-center items-center mx-auto bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 my-6"
+				>
+					Load More
+				</button>
+			)}
 		</div>
 	);
 }
