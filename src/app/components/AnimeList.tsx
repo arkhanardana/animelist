@@ -6,6 +6,8 @@ import Image from "next/image";
 type AnimeProps = {
 	mal_id: number;
 	title: string;
+	year: number;
+	score: number;
 	image_url: string;
 	synopsis: string;
 	images: {
@@ -87,7 +89,8 @@ export default function AnimeList() {
 								height={500}
 								loading="lazy"
 							/>
-							<h2 className="text-xl font-bold mt-2 text-black">{anime.title}</h2>
+							<p className="text-lg font-semibold mt-2 text-black">Rating: {anime.score}</p>
+							<h2 className="text-xl font-bold mt-1 text-black">{anime.title}</h2>
 							<p className="text-sm mt-1 text-black">
 								{anime.synopsis ? anime.synopsis.slice(0, 100) + "..." : "No synopsis available."}
 							</p>
