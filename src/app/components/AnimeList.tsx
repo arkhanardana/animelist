@@ -106,7 +106,7 @@ export default function AnimeList() {
 			{visibleAnime < animeList.length && !isLoading && (
 				<button
 					onClick={handleLoadMore}
-					className="flex justify-center items-center mx-auto font-semibold bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 my-6"
+					className="flex justify-center items-center mx-auto font-semibold bg-blue-800 text-white px-4 py-2 rounded hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-400 my-6"
 				>
 					Load More
 				</button>
