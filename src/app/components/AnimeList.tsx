@@ -22,9 +22,11 @@ export default function AnimeList() {
 	const [searchQuery, setSearchQuery] = useState<string>("");
 	const [debouncedQuery, setDebouncedQuery] = useState<string>("");
 	const [visibleAnime, setVisibleAnime] = useState<number>(8);
+	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const inputRef = useRef<HTMLInputElement>(null);
 
 	const getAnimeList = async (query = "") => {
+		setIsLoading(true); // Set isLoading menjadi true sebelum fetch dimulai
 		const apiUrl = query ? `https://api.jikan.moe/v4/anime?q=${query}` : "https://api.jikan.moe/v4/anime";
 		try {
 			const response = await fetch(apiUrl);
@@ -33,6 +35,7 @@ export default function AnimeList() {
 		} catch (error) {
 			console.log(error);
 		}
+		setIsLoading(false);
 	};
 
 	useEffect(() => {
@@ -64,7 +67,6 @@ export default function AnimeList() {
 		<div className="container mx-auto">
 			<h1 className="text-3xl text-white text-center p-4 font-semibold">List-List Anime</h1>
 
-			{/* Search Bar */}
 			<div className="flex mx-6 sm:mx-4 justify-center mb-4">
 				<input
 					type="text"
@@ -76,7 +78,8 @@ export default function AnimeList() {
 				/>
 			</div>
 
-			{/* Anime Cards */}
+			{isLoading && <div className="text-center text-white font-semibold">Loading...</div>}
+
 			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 p-4">
 				{!!animeList.length ? (
 					animeList.slice(0, visibleAnime).map((anime: AnimeProps) => (
@@ -100,10 +103,10 @@ export default function AnimeList() {
 					<p className="text-center col-span-4">No anime found...</p>
 				)}
 			</div>
-			{visibleAnime < animeList.length && (
+			{visibleAnime < animeList.length && !isLoading && (
 				<button
 					onClick={handleLoadMore}
-					className="flex justify-center items-center mx-auto bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 my-6"
+					className="flex justify-center items-center mx-auto font-semibold bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 my-6"
 				>
 					Load More
 				</button>
