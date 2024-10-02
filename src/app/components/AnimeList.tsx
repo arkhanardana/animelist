@@ -92,7 +92,8 @@ export default function AnimeList() {
 								alt={anime.title}
 								width={300}
 								height={500}
-								loading="lazy"
+								loading="eager"
+								priority={true}
 							/>
 							<p className="text-lg font-semibold mt-2 text-black">Rating: {anime.score}</p>
 							<h2 className="text-xl font-bold mt-1 text-black">{anime.title}</h2>
