@@ -80,13 +80,10 @@ export default function AnimeList() {
 				/>
 			</div>
 
-			{/* Anime Cards or Skeleton */}
 			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 p-4">
 				{isLoading ? (
-					// Tampilkan skeleton saat loading
 					Array.from({ length: visibleAnime }).map((_, index) => <SkeletonCard key={index} />)
 				) : !!animeList.length ? (
-					// Tampilkan anime jika data sudah ada
 					animeList.slice(0, visibleAnime).map((anime: AnimeProps) => (
 						<div key={anime.mal_id} className="bg-white p-4 rounded shadow-lg">
 							<Image
@@ -109,11 +106,10 @@ export default function AnimeList() {
 				)}
 			</div>
 
-			{/* Load More Button */}
 			{visibleAnime < animeList.length && !isLoading && (
 				<button
 					onClick={handleLoadMore}
-					className="flex justify-center items-center mx-auto font-semibold bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 my-6"
+					className="flex justify-center items-center mx-auto font-semibold bg-blue-800 text-white px-4 py-2 rounded hover:bg-blue-900 my-6"
 				>
 					Load More
 				</button>
