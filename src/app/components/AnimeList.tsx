@@ -102,7 +102,7 @@ export default function AnimeList() {
 						</div>
 					))
 				) : (
-					<p className="text-center col-span-4">No anime found..</p>
+					<p className="text-center col-span-4">No anime found...</p>
 				)}
 			</div>
 
