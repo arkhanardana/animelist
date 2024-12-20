@@ -6,7 +6,7 @@ const font = GeistSans;
 
 export const metadata: Metadata = {
 	title: "Anime List",
-	description: "Find your favorite anime",
+	description: "Find your favorite animes",
 };
 
 export default function RootLayout({
