@@ -9,7 +9,7 @@ export default function Navbar() {
 			<ul>
 				<li className="flex justify-between items-center mx-4 sm:mx-14">
 					<Link href="/" className="text-xl text-[#070f2b] font-semibold cursor-pointer">
-						Anime List
+						AnimeList
 					</Link>
 					<Link href="https://github.com/arkhanardana" aria-label="GitHub Arkhan Ardana">
 						<GithubLogo size={40} className="cursor-pointer" />
