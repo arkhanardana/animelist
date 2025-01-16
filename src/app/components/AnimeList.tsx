@@ -66,7 +66,7 @@ export default function AnimeList() {
 
 	return (
 		<div className="container mx-auto">
-			<h1 className="text-3xl text-white text-center p-4 font-semibold">List-List Anime</h1>
+			<h1 className="text-3xl text-white text-center p-4 font-semibold">List - List Anime</h1>
 
 			{/* Search Bar */}
 			<div className="flex mx-6 sm:mx-4 justify-center mb-4">
